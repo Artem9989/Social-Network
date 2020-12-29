@@ -1,0 +1,13 @@
+.UserPhoto {
+ height: 80px;
+ width: 80px;
+ border-radius: 50px;
+}
+
+.selectPage {
+    font-weight: bold;
+    cursor: pointer;
+}
+.Page {
+    cursor: pointer;
+}

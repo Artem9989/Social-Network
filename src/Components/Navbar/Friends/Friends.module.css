@@ -1,0 +1,20 @@
+.Avatar {
+    display: flex;
+    margin-top: 5px;
+    border-radius: 10%;
+    max-width: 50px;
+}
+
+.Friends{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.Friend{
+    margin: 1px;
+}
+.NameFriends{
+    text-align: center;
+    flex-direction: column;
+}

@@ -1,0 +1,20 @@
+.dialogActive a {
+    text-decoration: none;
+}
+
+.dialogActive a{
+    color: #0046c7;
+    margin: 5px;
+    font-size: 20px;
+    text-align: left;
+    text-decoration: none;
+  }
+
+.dialogActive a.dialog{
+    text-decoration: solid;
+    color: red;
+}
+.DialogAvatar{
+    width: 50px;
+}
+  

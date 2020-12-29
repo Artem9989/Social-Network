@@ -1,0 +1,12 @@
+.content{
+    grid-area: content;
+    margin-top: 10px;
+  }
+  
+  .postsBlock {
+    padding: 10px;
+  }
+  .TextArea{
+    width: 1000px;
+    height: 64px;
+  }

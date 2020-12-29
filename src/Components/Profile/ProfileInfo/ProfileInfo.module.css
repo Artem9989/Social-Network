@@ -1,0 +1,15 @@
+ .map_content_img{
+  grid-row: span 3 / auto;
+  width: 100%; 
+  height: 300px;
+  object-fit: cover;
+  }
+.div_content_img{
+
+}
+.Avatar {
+    padding: 5px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
