@@ -6,25 +6,32 @@ import Music from './Components/Music/Music.jsx';
 import Settings from './Components/Settings/Settings.jsx';
 import NavbarContainer from './Components/Navbar/NavbarContainer.jsx';
 //import ProfileContainer from './Components/Profile/ProfileContainer.jsx';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, withRouter } from 'react-router-dom'
 //import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import { initializeApp } from './redux/App-reducer';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
 import Preloader from './Components/Common/Preloader/Preloader';
 import store from './redux/redux-store.js'
-import { Provider } from 'react-redux';
 import { WithSuspense } from './HOC/withSuspence';
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer.jsx'));
 
 class App extends React.Component {
+  catchAllUnhandleErrors = (PromiseRejectionEvent) => {
+    console.log(PromiseRejectionEvent)
+  }
   componentDidMount() {
     this.props.initializeApp()
+    window.addEventListener("unhandledrejection", this.catchAllUnhandleErrors);
   }
+  
+componentWillMount() {
+  window.removeEventListener("unhandledrejection", this.catchAllUnhandleErrors);
+}
 
   render() {
     if (!this.props.initialized) {
@@ -36,6 +43,8 @@ class App extends React.Component {
         <HeaderContainer />
         <Route render={() => <NavbarContainer />} />
         <div className='app-wrapperContent'>
+       {/*  < Route exact path='/' render={WithSuspense (ProfileContainer)}/> */}
+       < Route path='/' render={() => <Redirect to={"/profile"}/>} />
           < Route path='/dialogs' render={WithSuspense (DialogsContainer)}/>
           < Route path='/profile/:userId?' render={WithSuspense (ProfileContainer)}/>
           < Route path='/News' render={() => <News />} />
@@ -43,6 +52,8 @@ class App extends React.Component {
           < Route path='/Settings' render={() => <Settings />} />
           < Route path='/Users' render={() => <UsersContainer />} />
           < Route path='/login' render={() => <Login />} />
+          < Route path='*' render={() => <div> 404 NOT FOUND </div>}/>
+          
         </div>
       </div>
     );
